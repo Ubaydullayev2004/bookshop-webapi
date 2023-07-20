@@ -8,16 +8,20 @@
 
   <ItemGroup>
     <Folder Include="Common\Attributes\" />
-    <Folder Include="Common\Helpers\" />
     <Folder Include="Common\Validations\" />
     <Folder Include="Common\Security\" />
-    <Folder Include="Dtos\" />
-    <Folder Include="Interfaces\" />
-    <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.6.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\BookShop.DataAccess\BookShop.DataAccess.csproj" />
   </ItemGroup>
-
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
 </Project>
