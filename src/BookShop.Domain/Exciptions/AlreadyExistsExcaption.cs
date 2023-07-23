@@ -2,7 +2,7 @@
 
 namespace BookShop.Domain.Exciptions;
 
-public class NotFoundException : Exception
+public class AlreadyExistsExcaption : Exception
 {
     public HttpStatusCode StatusCode { get; } = HttpStatusCode.NotFound;
 

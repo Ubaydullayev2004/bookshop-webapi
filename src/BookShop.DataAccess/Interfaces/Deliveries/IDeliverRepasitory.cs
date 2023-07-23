@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BookShop.DataAccess.Common.Interfaces;
+using BookShop.DataAccess.ViewModel.Deliveries;
+using BookShop.Domain.Entities.Deliveries;
 
-namespace BookShop.DataAccess.Interfaces.Deliveries
+namespace BookShop.DataAccess.Interfaces.Deliveries;
+
+public interface IDeliverRepasitory:IRepasitory<Delivery,Delivery>,IGetAll<DeliverViewModel>
 {
-    internal interface IDeliverRepasitory
-    {
-    }
+    public Task<DeliverViewModel> GetDeliverAsync(long id);
+
 }

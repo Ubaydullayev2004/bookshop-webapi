@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BookShop.DataAccess.Common.Interfaces;
+using BookShop.DataAccess.ViewModel.Orders;
+using BookShop.Domain.Entities;
 
-namespace BookShop.DataAccess.Interfaces.Orders
+namespace BookShop.DataAccess.Interfaces.Orders;
+
+public interface IOrderRepasitory:IRepasitory<Order,OrderViewModel>,IGetAll<OrderViewModel>
 {
-    internal class IOrderRepasitory
-    {
-    }
 }

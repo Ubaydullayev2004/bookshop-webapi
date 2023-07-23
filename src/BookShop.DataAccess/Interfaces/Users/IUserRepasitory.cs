@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BookShop.DataAccess.Common.Interfaces;
+using BookShop.DataAccess.ViewModel;
+using BookShop.Domain.Entities.Users;
 
-namespace BookShop.DataAccess.Interfaces.Users
+namespace BookShop.DataAccess.Interfaces.Users;
+
+public interface IUserRepasitory: IRepasitory<User, UserViewModel>,
+    IGetAll<UserViewModel>, ISearchable<UserViewModel>
 {
-    internal interface IUserRepasitory
-    {
-    }
+    public Task<User?> GetByPhoneAsync(string phone);
+
 }

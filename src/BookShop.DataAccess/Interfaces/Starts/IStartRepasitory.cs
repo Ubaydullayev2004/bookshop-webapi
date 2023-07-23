@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BookShop.Domain.Entities.Starts;
 
-namespace BookShop.DataAccess.Interfaces.Starts
+namespace BookShop.DataAccess.Interfaces.Starts;
+
+public interface IStartRepasitory:IRepasitory<Start,Start>
 {
-    internal interface IStartRepasitory
-    {
-    }
 }

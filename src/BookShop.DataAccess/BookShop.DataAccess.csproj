@@ -7,14 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\BookDiscounts\" />
-    <Folder Include="Interfaces\Books\" />
-    <Folder Include="Interfaces\Deliveries\" />
-    <Folder Include="Interfaces\Discounts\" />
-    <Folder Include="Interfaces\Users\" />
-    <Folder Include="Interfaces\Starts\" />
-    <Folder Include="Interfaces\Orders\" />
-    <Folder Include="Interfaces\OrderDetails\" />
     <Folder Include="Repositories\BookDiscounts\" />
     <Folder Include="Repositories\Books\" />
     <Folder Include="Repositories\Deliveries\" />
@@ -22,8 +14,6 @@
     <Folder Include="Repositories\OrderDetails\" />
     <Folder Include="Repositories\Orders\" />
     <Folder Include="Repositories\Starts\" />
-    <Folder Include="Repositories\Users\" />
-    <Folder Include="ViewModel\" />
   </ItemGroup>
 
   <ItemGroup>

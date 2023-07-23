@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BookShop.DataAccess.Common.Interfaces;
+using BookShop.Domain.Entities.BookDiscounts;
 
-namespace BookShop.DataAccess.Interfaces.BookDiscounts
+namespace BookShop.DataAccess.Interfaces.BookDiscounts;
+
+public interface IBookDiscountRepasitory:IRepasitory<BookDiscount, BookDiscount>,
+    IGetAll<BookDiscount>
 {
-    internal interface IBookDiscountRepasitory
-    {
-    }
+
 }

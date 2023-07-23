@@ -2,9 +2,10 @@
 
 namespace BookShop.Domain.Exciptions;
 
-public class NotFoundException : Exception
+public class VerificationTooManyRequestsException
 {
-    public HttpStatusCode StatusCode { get; } = HttpStatusCode.NotFound;
+    public HttpStatusCode StatusCode { get; } = HttpStatusCode.TooManyRequests;
 
     public string TitleMessage { get; protected set; } = String.Empty;
 }
+
