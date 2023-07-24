@@ -1,6 +1,6 @@
 ﻿using BookShop.DataAccess.Interfaces.Users;
 using BookShop.DataAccess.Utils;
-using BookShop.DataAccess.ViewModel;
+using BookShop.DataAccess.ViewModel.Users;
 using BookShop.Domain.Entities.Users;
 using Dapper;
 using System.Numerics;
@@ -35,7 +35,7 @@ public class UserRepository : BaseRepasitory, IUserRepasitory
         {
             await _connection.OpenAsync();
             string query = "INSERT INTO public.users(first_name, last_name, phone_number, phone_number_confirmed, passport_seria_number, is_male, birth_date, country, region, password_hash, salt, image_path, last_activity, identity_role, created_at, updated_at) " +
-                $"VALUES (@FirstName, @LastName, @PhoneNumber, @PhoneNumberConfirmed, @PassportSeriaNumber, @IsMale, '{entity.BirthDate.Year}-{entity.BirthDate.Month}-{entity.BirthDate.Day}', @Country, @Region, @PasswordHash, @Salt, @ImagePath, @LastActivity, @Role, @CreatedAt, @UpdatedAt);";
+                $"VALUES (@FirstName, @LastName, @PhoneNumber, @PhoneNumberConfirmed, @PassportSeriaNumber, @IsMale, '{entity.BirthDate.Year}-{entity.BirthDate.Month}-{entity.BirthDate.Day}', @Country, @Region, @PasswordHash, @Salt, @ImagePath, @LastActivity, @IdentityRole, @CreatedAt, @UpdatedAt);";
             return await _connection.ExecuteAsync(query, entity);
         }
         catch
@@ -103,7 +103,6 @@ public class UserRepository : BaseRepasitory, IUserRepasitory
     public async Task<IList<UserViewModel>> GetAllAsync(PaginationParams @params)
     {
         throw new NotImplementedException();
-
     }
 
 }

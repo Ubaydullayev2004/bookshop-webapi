@@ -3,8 +3,11 @@ using BookShop.Service.Interfaces.Auth;
 using BookShop.Service.Validators.Auth;
 using BookShop.Service.Validators;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BookShop.WebApi.Controllers;
+
+
 [Route("api/auth")]
 [ApiController]
 public class AuthController : ControllerBase
@@ -16,6 +19,7 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("register")]
+    [AllowAnonymous]
     public async Task<IActionResult> RegisterAsync([FromForm] RegisterDto registerDto)
     {
         var validator = new RegisterValidator();
@@ -29,6 +33,7 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("register/send-code")]
+    [AllowAnonymous]
     public async Task<IActionResult> SendCodeRegisterAsync(string phone)
     {
         var result = PhoneNumberValidator.IsValid(phone);
@@ -39,6 +44,7 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("register/verify")]
+    [AllowAnonymous]
     public async Task<IActionResult> VerifyRegisterAsync([FromBody] VerfiyRegisterDto verifyRegisterDto)
     {
         var serviceResult = await _authService.VerifyRegisterAsync(verifyRegisterDto.PhoneNumber, verifyRegisterDto.Code);
@@ -46,6 +52,7 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("login")]
+    [AllowAnonymous]
     public async Task<IActionResult> LoginAsync([FromBody] LoginDto loginDto)
     {
         var validator = new LoginValidator();
@@ -55,5 +62,4 @@ public class AuthController : ControllerBase
         var serviceResult = await _authService.LoginAsync(loginDto);
         return Ok(new { serviceResult.Result, serviceResult.Token });
     }
-
 }

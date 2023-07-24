@@ -1,6 +1,4 @@
 ﻿using BookShop.DataAccess.Interfaces.Users;
-using BookShop.Domain.Entities.Users;
-using BookShop.Domain.Exciptions;
 using BookShop.Domain.Exciptions.Auth;
 using BookShop.Domain.Exciptions.Users;
 using BookShop.Service.Common.Helpers;
@@ -11,8 +9,6 @@ using BookShop.Service.Dtos.Security;
 using BookShop.Service.Interfaces.Auth;
 using BookShop.Service.Interfaces.Notification;
 using Microsoft.Extensions.Caching.Memory;
-using Microsoft.VisualStudio.Services.Users;
-using VerificationTooManyRequestsException = BookShop.Domain.Exciptions.Auth.VerificationTooManyRequestsException;
 
 namespace BookShop.Service.Services.Auth;
 
@@ -76,8 +72,8 @@ public class AuthService : IAuthService
                 TimeSpan.FromMinutes(CACHED_MINUTES_FOR_VERIFICATION));
 
             SmsMessage smsMessage = new SmsMessage();
-            smsMessage.Title = "Agile Shop";
-            smsMessage.Content = "Your verification code : " + verificationDto.Code;
+            smsMessage.Title = "BookShop";
+            smsMessage.Content = "Assalomu alaykum sizning tasdiqlash kodingiz : " + verificationDto.Code;
             smsMessage.Recipent = phone.Substring(1);
 
             var smsResult = await _smsSender.SendAsync(smsMessage);
@@ -101,7 +97,7 @@ public class AuthService : IAuthService
                     if (dbResult is true)
                     {
                         var user = await _userRepository.GetByPhoneAsync(phone);
-                        string token = await _tokenService.GenerateToken(user);
+                        string token = _tokenService.GenerateToken(user);
                         return (Result: true, Token: token);
                     }
                     else return (Result: false, Token: "");
@@ -133,7 +129,7 @@ public class AuthService : IAuthService
         user.Salt = hasherResult.Salt;
 
         user.CreatedAt = user.UpdatedAt = user.LastActivity = TimeHelper.GetDateTime();
-        user.Role = Domain.Enums.IdentityRole.User;
+        user.IdentityRole = Domain.Enums.IdentityRole.User;
 
         var dbResult = await _userRepository.CreateAsync(user);
         return dbResult > 0;
@@ -147,7 +143,7 @@ public class AuthService : IAuthService
         var hasherResult = PasswordHasher.Verify(loginDto.Password, user.PasswordHash, user.Salt);
         if (hasherResult == false) throw new PasswordNotMatchException();
 
-        string token = await _tokenService.GenerateToken(user);
+        string token =  _tokenService.GenerateToken(user);
         return (Result: true, Token: token);
     }
 }

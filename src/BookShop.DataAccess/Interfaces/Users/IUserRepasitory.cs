@@ -1,5 +1,5 @@
 ﻿using BookShop.DataAccess.Common.Interfaces;
-using BookShop.DataAccess.ViewModel;
+using BookShop.DataAccess.ViewModel.Users;
 using BookShop.Domain.Entities.Users;
 
 namespace BookShop.DataAccess.Interfaces.Users;

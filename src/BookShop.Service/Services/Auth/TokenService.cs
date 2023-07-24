@@ -17,16 +17,16 @@ public class TokenService : ITokenService
     {
         _config = configuration.GetSection("Jwt");
     }
-    public async Task<string> GenerateToken(User user)
+    public string GenerateToken(User user)
     {
         var identityClaims = new Claim[]
-        {
+       {
             new Claim("Id", user.Id.ToString()),
             new Claim("FirstName", user.FirstName),
             new Claim("Lastname", user.LastName),
             new Claim(ClaimTypes.MobilePhone, user.PhoneNumber),
-            new Claim(ClaimTypes.Role, user.Role.ToString())
-        };
+            new Claim(ClaimTypes.Role, user.IdentityRole.ToString())
+       };
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["SecurityKey"]!));
         var keyCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -41,5 +41,4 @@ public class TokenService : ITokenService
 
         return new JwtSecurityTokenHandler().WriteToken(token);
     }
-
 }
