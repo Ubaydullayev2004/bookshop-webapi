@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Repositories\BookDiscounts\" />
-    <Folder Include="Repositories\Books\" />
     <Folder Include="Repositories\Deliveries\" />
     <Folder Include="Repositories\Discounts\" />
     <Folder Include="Repositories\OrderDetails\" />

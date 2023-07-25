@@ -1,13 +1,13 @@
 ﻿using BookShop.DataAccess.Interfaces.Categories;
 using BookShop.DataAccess.Utils;
 using BookShop.Domain.Entities.Categories;
-using BookShop.Domain.Exciptions;
 using BookShop.Domain.Exciptions.Category;
 using BookShop.Domain.Exciptions.Files;
 using BookShop.Service.Common.Helpers;
 using BookShop.Service.Dtos.Categories;
 using BookShop.Service.Interfaces.Categories;
 using BookShop.Service.Interfaces.Common;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace BookShop.Service.Services.Categories;
 
@@ -16,11 +16,18 @@ public class CategoryService : ICategoryService
 {
     private readonly ICategoryRepository _repository;
     private readonly IFileService _fileService;
+    private readonly IMemoryCache _memoryCache;
+    private readonly IPaginator _paginator;
+
     public CategoryService(ICategoryRepository categoryRepository,
-        IFileService fileService)
+        IFileService fileService,
+        IMemoryCache memoryCache,
+        IPaginator paginator)
     {
         this._repository = categoryRepository;
         this._fileService = fileService;
+        this._memoryCache = memoryCache;
+        this._paginator = paginator;
     }
 
     public async Task<long> CountAsync() => await _repository.CountAsync();
@@ -55,20 +62,22 @@ public class CategoryService : ICategoryService
     public async Task<IList<Categoriy>> GetAllAsync(PaginationParams @params)
     {
         var categories = await _repository.GetAllAsync(@params);
+        var count = await _repository.CountAsync();
+        _paginator.Paginate(count, @params);
         return categories;
     }
 
     public async Task<Categoriy> GetByIdAsync(long categoryId)
     {
         var category = await _repository.GetByIdAsync(categoryId);
-        if (category is null) throw new NotFoundException();
-        else return category;
+        if (category is null) throw new CategoryNotFoundException();
+        return category;
     }
 
     public async Task<bool> UpdateAsync(long categoryId, CategoryUpdateDto dto)
     {
         var category = await _repository.GetByIdAsync(categoryId);
-        if (category is null) throw new NotFoundException();
+        if (category is null) throw new CategoryNotFoundException();
 
         // parse new items to category
         category.Name = dto.Name;

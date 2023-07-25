@@ -1,10 +1,11 @@
 ﻿using BookShop.DataAccess.Utils;
+using BookShop.Service.Interfaces.Common;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 
 namespace BookShop.Service.Services.Common;
 
-public class Paginator
+public class Paginator:IPaginator
 {
     private readonly IHttpContextAccessor _accessor;
     public Paginator(IHttpContextAccessor httpContextAccessor)

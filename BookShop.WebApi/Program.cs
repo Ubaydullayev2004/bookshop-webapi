@@ -10,6 +10,8 @@ using BookShop.Service.Services.Auth;
 using BookShop.Service.Services.Categories;
 using BookShop.Service.Services.Common;
 using BookShop.Service.Services.Notification;
+using BookShop.WebApi.Configurations.Layers;
+using BookShop.WebApi.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,30 +23,28 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddMemoryCache();
 
+builder.ConfigureJwtAuth();
+builder.ConfigureSwaggerAuth();
+builder.ConfigureCORSPolicy();
+builder.ConfigureDataAccess();
+builder.ConfigureServiceLayer();
 
 
-
-builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-builder.Services.AddScoped<IUserRepasitory, UserRepository>();
-builder.Services.AddScoped<IFileService, FileService>();
-builder.Services.AddScoped<ICategoryService, CategoryService>();
-builder.Services.AddScoped<IAuthService, AuthService>();
-builder.Services.AddScoped<ITokenService, TokenService>();
-
-builder.Services.AddSingleton<ISmsSender, SmsSender>();
 
 
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("AllowAll");
 
 app.UseStaticFiles();
 
