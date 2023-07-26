@@ -1,6 +1,5 @@
 ﻿using BookShop.DataAccess.Interfaces.Books;
 using BookShop.DataAccess.Utils;
-using BookShop.DataAccess.ViewModel.Books;
 using BookShop.Domain.Entities.Books;
 using Dapper;
 
@@ -66,7 +65,7 @@ public class BookRepasitory : BaseRepasitory, IBookRepasitory
         }
     }
 
-    public async Task<IList<BookViewModel>> GetAllAsync(PaginationParams @params)
+    public async Task<IList<Book>> GetAllAsync(PaginationParams @params)
     {
         try
         {
@@ -75,12 +74,12 @@ public class BookRepasitory : BaseRepasitory, IBookRepasitory
 
                 $"offset {@params.GetSkipCount()} limit {@params.PageSize}";
 
-            var result = (await _connection.QueryAsync<BookViewModel>(query)).ToList();
+            var result = (await _connection.QueryAsync<Book>(query)).ToList();
             return result;
         }
         catch
         {
-            return new List<BookViewModel>();
+            return new List<Book>();
         }
         finally
         {
@@ -88,13 +87,13 @@ public class BookRepasitory : BaseRepasitory, IBookRepasitory
         }
     }
 
-    public async Task<BookViewModel?> GetByIdAsync(long id)
+    public async Task<Book> GetByIdAsync(long id)
     {
         try
         {
             await _connection.OpenAsync();
             string query = $"SELECT * FROM books where id=@Id";
-            var result = await _connection.QuerySingleAsync<BookViewModel>(query, new { Id = id });
+            var result = await _connection.QuerySingleAsync<Book>(query, new { Id = id });
             return result;
         }
         catch
@@ -128,7 +127,7 @@ public class BookRepasitory : BaseRepasitory, IBookRepasitory
         }
     }
 
-    public Task<(int ItemsCount, IList<BookViewModel>)> SearchAsync(string search, PaginationParams @params)
+    public Task<(int ItemsCount, IList<Book>)> SearchAsync(string search, PaginationParams @params)
     {
         throw new NotImplementedException();
     }

@@ -1,17 +1,5 @@
-using BookShop.DataAccess.Interfaces.Categories;
-using BookShop.DataAccess.Interfaces.Users;
-using BookShop.DataAccess.Repositories.Categories;
-using BookShop.DataAccess.Repositories.Users;
-using BookShop.Service.Interfaces.Auth;
-using BookShop.Service.Interfaces.Categories;
-using BookShop.Service.Interfaces.Common;
-using BookShop.Service.Interfaces.Notification;
-using BookShop.Service.Services.Auth;
-using BookShop.Service.Services.Categories;
-using BookShop.Service.Services.Common;
-using BookShop.Service.Services.Notification;
-using BookShop.WebApi.Configurations.Layers;
 using BookShop.WebApi.Configurations;
+using BookShop.WebApi.Configurations.Layers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,9 +16,6 @@ builder.ConfigureSwaggerAuth();
 builder.ConfigureCORSPolicy();
 builder.ConfigureDataAccess();
 builder.ConfigureServiceLayer();
-
-
-
 
 
 var app = builder.Build();

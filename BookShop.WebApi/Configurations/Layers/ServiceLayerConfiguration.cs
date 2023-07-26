@@ -1,8 +1,10 @@
 ﻿using BookShop.Service.Interfaces.Auth;
+using BookShop.Service.Interfaces.Books;
 using BookShop.Service.Interfaces.Categories;
 using BookShop.Service.Interfaces.Common;
 using BookShop.Service.Interfaces.Notification;
 using BookShop.Service.Services.Auth;
+using BookShop.Service.Services.Books;
 using BookShop.Service.Services.Categories;
 using BookShop.Service.Services.Common;
 using BookShop.Service.Services.Notification;
@@ -20,5 +22,7 @@ public static class ServiceLayerConfiguration
         builder.Services.AddScoped<ITokenService, TokenService>();
         builder.Services.AddScoped<IPaginator, Paginator>();
         builder.Services.AddSingleton<ISmsSender, SmsSender>();
+
+        builder.Services.AddScoped<IBookService, BookService>();
     }
 }

@@ -72,7 +72,7 @@ public class AuthService : IAuthService
                 TimeSpan.FromMinutes(CACHED_MINUTES_FOR_VERIFICATION));
 
             SmsMessage smsMessage = new SmsMessage();
-            smsMessage.Title = "BookShop";
+            smsMessage.Title = "BookShop ";
             smsMessage.Content = "Assalomu alaykum sizning tasdiqlash kodingiz : " + verificationDto.Code;
             smsMessage.Recipent = phone.Substring(1);
 

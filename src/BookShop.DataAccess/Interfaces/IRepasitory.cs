@@ -11,5 +11,6 @@ public interface IRepasitory<TEntity, TViewModel>
 
     public Task<TViewModel?> GetByIdAsync(long id);
 
+
     public Task<long> CountAsync();
 }

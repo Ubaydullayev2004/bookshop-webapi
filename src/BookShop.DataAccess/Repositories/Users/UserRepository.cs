@@ -3,7 +3,6 @@ using BookShop.DataAccess.Utils;
 using BookShop.DataAccess.ViewModel.Users;
 using BookShop.Domain.Entities.Users;
 using Dapper;
-using System.Numerics;
 
 namespace BookShop.DataAccess.Repositories.Users;
 
@@ -105,4 +104,5 @@ public class UserRepository : BaseRepasitory, IUserRepasitory
         throw new NotImplementedException();
     }
 
+    
 }

@@ -20,7 +20,7 @@ public class AuthController : ControllerBase
 
     [HttpPost("register")]
     [AllowAnonymous]
-    public async Task<IActionResult> RegisterAsync([FromForm] RegisterDto registerDto)
+    public async Task<IActionResult> RegisterAsync([FromBody] RegisterDto registerDto)
     {
         var validator = new RegisterValidator();
         var result = validator.Validate(registerDto);

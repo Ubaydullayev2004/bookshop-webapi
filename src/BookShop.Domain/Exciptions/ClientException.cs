@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace AgileShop.Domain.Exceptions;
+namespace BookShop.Domain.Exciptions;
 
 public abstract class ClientException : Exception
 {
