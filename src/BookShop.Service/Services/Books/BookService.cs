@@ -51,7 +51,7 @@ public class BookService : IBookService
             PageCount = dto.PageCount,
             Publisher = dto.Publisher,
             PaperFormat = dto.PaperFormat,
-            YeraOfPublication = dto.YearOfPublication,
+            YearOfPublication = dto.YearOfPublication,
             Cover = dto.Cover,
         };
         var result = await _repository.CreateAsync(book);
@@ -102,7 +102,7 @@ public class BookService : IBookService
         book.PageCount = dto.PageCount;
         book.Publisher = dto.Publisher;
         book.PaperFormat = dto.PaperFormat;
-        book.YeraOfPublication = dto.YearOfPublication;
+        book.YearOfPublication = dto.YearOfPublication;
         book.Cover = dto.Cover;
 
         if (dto.Image is not null)

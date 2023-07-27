@@ -28,7 +28,7 @@
 
         public string Cover { get; set; } = String.Empty;
 
-        public int YeraOfPublication { get; set; } 
+        public int YearOfPublication { get; set; } 
 
     }
 }
