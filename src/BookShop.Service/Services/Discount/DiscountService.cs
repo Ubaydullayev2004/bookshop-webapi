@@ -1,4 +1,5 @@
 ﻿using BookShop.DataAccess.Interfaces;
+using BookShop.DataAccess.Interfaces.Discounts;
 using BookShop.DataAccess.Utils;
 using BookShop.Domain.Entities.Categories;
 using BookShop.Domain.Exciptions.Category;
@@ -33,7 +34,7 @@ public class DiscountService : IDiscountService
     public async Task<long> CountAsync() => await _repository.CountAsync();
     
 
-    public async Task<bool> CreateAsync(DiscountDto dto)
+    public async Task<bool> CreateAsync(CreateDiscountDto dto)
     {
         Domain.Entities.Discounts.Discount discount = new Domain.Entities.Discounts.Discount
         {

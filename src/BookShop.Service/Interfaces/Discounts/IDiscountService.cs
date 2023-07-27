@@ -8,7 +8,7 @@ namespace BookShop.Service.Interfaces.Discounts;
 
 public interface IDiscountService
 {
-    public Task<bool> CreateAsync(DiscountDto dto);
+    public Task<bool> CreateAsync(CreateDiscountDto dto);
 
     public Task<long> CountAsync();
 

@@ -26,6 +26,6 @@ public static class ServiceLayerConfiguration
         builder.Services.AddSingleton<ISmsSender, SmsSender>();
 
         builder.Services.AddScoped<IBookService, BookService>();
-
+        builder.Services.AddScoped<IDiscountService, DiscountService>();
     }
 }

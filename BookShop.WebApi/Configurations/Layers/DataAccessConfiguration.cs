@@ -7,8 +7,6 @@ using BookShop.DataAccess.Repositories.Books;
 using BookShop.DataAccess.Repositories.Categories;
 using BookShop.DataAccess.Repositories.Discounts;
 using BookShop.DataAccess.Repositories.Users;
-using BookShop.Service.Interfaces.Discounts;
-using BookShop.Service.Services.Discount;
 
 namespace BookShop.WebApi.Configurations.Layers;
 
@@ -20,5 +18,6 @@ public static class DataAccessConfiguration
         builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
         builder.Services.AddScoped<IUserRepasitory, UserRepository>();
         builder.Services.AddScoped<IBookRepasitory, BookRepasitory>();
+        builder.Services.AddScoped<IDiscountRepasitory, DiscountRepasitory>();
     }
 }
