@@ -1,9 +1,14 @@
-﻿using BookShop.DataAccess.Interfaces.Books;
+﻿using BookShop.DataAccess.Interfaces;
+using BookShop.DataAccess.Interfaces.Books;
 using BookShop.DataAccess.Interfaces.Categories;
+using BookShop.DataAccess.Interfaces.Discounts;
 using BookShop.DataAccess.Interfaces.Users;
 using BookShop.DataAccess.Repositories.Books;
 using BookShop.DataAccess.Repositories.Categories;
+using BookShop.DataAccess.Repositories.Discounts;
 using BookShop.DataAccess.Repositories.Users;
+using BookShop.Service.Interfaces.Discounts;
+using BookShop.Service.Services.Discount;
 
 namespace BookShop.WebApi.Configurations.Layers;
 

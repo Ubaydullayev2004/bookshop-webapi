@@ -2,11 +2,13 @@
 using BookShop.Service.Interfaces.Books;
 using BookShop.Service.Interfaces.Categories;
 using BookShop.Service.Interfaces.Common;
+using BookShop.Service.Interfaces.Discounts;
 using BookShop.Service.Interfaces.Notification;
 using BookShop.Service.Services.Auth;
 using BookShop.Service.Services.Books;
 using BookShop.Service.Services.Categories;
 using BookShop.Service.Services.Common;
+using BookShop.Service.Services.Discount;
 using BookShop.Service.Services.Notification;
 
 namespace BookShop.WebApi.Configurations.Layers;
@@ -24,5 +26,6 @@ public static class ServiceLayerConfiguration
         builder.Services.AddSingleton<ISmsSender, SmsSender>();
 
         builder.Services.AddScoped<IBookService, BookService>();
+
     }
 }

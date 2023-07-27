@@ -89,19 +89,54 @@ public class UserRepository : BaseRepasitory, IUserRepasitory
         throw new NotImplementedException();
     }
 
-    public Task<(int ItemsCount, IList<UserViewModel>)> SearchAsync(string search, PaginationParams @params)
+    public Task<(int ItemsCount, IList<User>)> SearchAsync(string search, PaginationParams @params)
     {
         throw new NotImplementedException();
     }
 
-    public Task<int> UpdateAsync(long id, User entity)
+    public async Task<int> UpdateAsync(long id, User entity)
     {
-        throw new NotImplementedException();
+        try
+        {
+            await _connection.OpenAsync();
+            string query = "UPDATE users " +
+                "SET first_name = @FirstName, last_name = @LastName, email = @Email, email_confirmed = @EmailConfirmed, phone_number = @PhoneNumber, " +
+                "balance = @Balance, avatar_path = @AvatarPath, password_hash = @PasswordHash, salt = @Salt, " +
+                "identity_role = @IdentityRole, updated_at = @UpdatedAt, is_delated = @IsDetated " +
+                $"WHERE id = {id};";
+            var result = await _connection.ExecuteAsync(query, entity);
+            return result;
+        }
+        catch
+        {
+            return 0;
+        }
+        finally
+        {
+            await _connection.CloseAsync();
+        }
     }
     
-    public async Task<IList<UserViewModel>> GetAllAsync(PaginationParams @params)
+    public async Task<IList<User>> GetAllAsync(PaginationParams @params)
     {
-        throw new NotImplementedException();
+
+        try
+        {
+            await _connection.OpenAsync();
+            string query = $"select * from users " +
+                $"order by id desc " +
+                $"offset {@params.GetSkipCount()} limit {@params.PageSize}";
+            var result = (await _connection.QueryAsync<User>(query)).ToList();
+            return result;
+        }
+        catch
+        {
+            return new List<User>();
+        }
+        finally
+        {
+            await _connection.CloseAsync();
+        }
     }
 
     

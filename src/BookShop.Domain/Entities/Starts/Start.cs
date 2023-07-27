@@ -1,9 +1,8 @@
 ﻿namespace BookShop.Domain.Entities.Starts;
 
-public class Start
+public class Star
 {
-    public long Id { get; set; }
     public long UserId { get; set; }
     public long BookId { get; set; }
-    public long Star { get; set; }
+    public long Stars { get; set; }
 }

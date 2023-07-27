@@ -31,8 +31,8 @@ public class BookRepasitory : BaseRepasitory, IBookRepasitory
         try
         {
             await _connection.OpenAsync();
-            string query = "INSERT INTO public.books(title, category_id, description, unit_price, image_path, isbn, author, book_language, inscription, page_count, publisher, cover, paper_format, year_of_publication, created_at, updated_at)" +
-                "VALUES (@Title, @CategoryId, @Description, @UnitPrice, @ImagePath, @Isbn, @Author, @BookLanguage, @Inscription, @PageCount, @Publisher, @Cover, @PaperFormat, @YearOfPublication, @CreatedAt, @UpdatedAt);";
+            string query = "INSERT INTO public.books(title, category_id, description, unit_price, image_path, isbn, author, book_language, inscription, page_count, publisher, cover, paper_format, year_of_publication, created_at, updated_at ) " +
+                "VALUES ( @Title, @CategoryId, @Description, @UnitPrice, @ImagePath, @Isbn, @Author, @BookLanguage, @Inscription, @PageCount, @Publisher, @Cover, @PaperFormat, @YearOfPublication, @CreatedAt, @UpdatedAt );";
             var result = await _connection.ExecuteAsync(query, entity); 
             return result;
         }

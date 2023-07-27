@@ -5,7 +5,7 @@ using BookShop.Domain.Entities.Users;
 namespace BookShop.DataAccess.Interfaces.Users;
 
 public interface IUserRepasitory: IRepasitory<User, UserViewModel>,
-    IGetAll<UserViewModel>, ISearchable<UserViewModel>
+    IGetAll<User>, ISearchable<User>
 {
     public Task<User?> GetByPhoneAsync(string phone);
 
